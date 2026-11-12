@@ -1,0 +1,11 @@
+holograms: {}
+  # spawn:
+  #   location:
+  #     world: world
+  #     x: 0
+  #     y: 100
+  #     z: 0
+  #   lines:
+  #     - "<logo>"
+  #     - "<rainbow> Welcome to the server!"
+  #     - "<heart> Have fun!"

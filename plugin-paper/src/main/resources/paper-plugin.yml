@@ -1,0 +1,23 @@
+name: BlazeVortex
+version: ${version}
+main: io.github.blazevortex.BlazeVortexPlugin
+bootstrapper: io.github.blazevortex.paper.BlazeVortexBootstrap
+api-version: "26.1"
+description: The Ultimate Minecraft Content, Graphics and Multimedia Engine.
+author: BlazeVortex
+website: https://github.com/blazevortex
+folia-supported: false
+dependencies:
+  server:
+    PlaceholderAPI:
+      required: false
+      load: BEFORE
+    Vault:
+      required: false
+      load: BEFORE
+    WorldGuard:
+      required: false
+      load: BEFORE
+    ProtocolLib:
+      required: false
+      load: BEFORE

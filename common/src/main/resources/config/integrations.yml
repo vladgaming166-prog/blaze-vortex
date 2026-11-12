@@ -1,0 +1,5 @@
+integrations:
+  placeholderapi: true
+  vault: true
+  worldguard: false
+  protocollib: false

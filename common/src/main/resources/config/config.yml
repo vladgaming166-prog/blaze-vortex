@@ -1,0 +1,87 @@
+# Blaze Vortex main configuration
+# Missing keys are filled from this default at runtime. This file is never overwritten on reload.
+
+config-version: "1"
+language: en
+debug: false
+disabled-worlds: []
+
+modules:
+  core: true
+  emoji: true
+  image: true
+  gif: true
+  video: true
+  audio: true
+  resourcepack: true
+  font: true
+  display: true
+  hologram: true
+  gui: true
+  items: true
+  cosmetics: true
+  effects: true
+  config: true
+  storage: true
+  api: true
+  integrations: true
+  web: false
+
+emoji:
+  # Font units that a nativePixelReference-tall image occupies at size 100.
+  reference-height: 16
+  # Source pixels that map to reference-height at size 100.
+  native-pixel-reference: 128
+  max-glyph-height: 256
+  max-glyph-width: 256
+  context-sizes: {}
+
+cache:
+  images: 64
+  gifs: 16
+  video-frames: 24
+
+content:
+  watch-files: true
+  auto-rebuild-pack: false
+
+resource-pack:
+  url: ""
+  required: false
+  auto-send: true
+  pack-format: 0
+
+ffmpeg:
+  path: ffmpeg
+
+video:
+  default-fps: 10
+  default-width: 128
+  default-height: 128
+  max-concurrent: 4
+
+web:
+  enabled: false
+  bind: 127.0.0.1
+  port: 8765
+  require-auth-when-remote: true
+  password-hash: ""
+  password-salt: ""
+
+performance:
+  hologram-update-ticks: 10
+  ui-update-ticks: 20
+  sound-radius-ticks: 20
+
+security:
+  max-upload-bytes: 52428800
+  max-image-width: 4096
+  max-image-height: 4096
+  max-decoded-pixels: 16777216
+  max-gif-frames: 256
+  max-video-width: 1920
+  max-video-height: 1080
+  max-video-duration-seconds: 180
+  max-audio-duration-seconds: 300
+  max-fps: 30
+  ffmpeg-timeout-seconds: 60

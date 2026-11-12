@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Gradle 8.12 cannot run on JDK 25. Keep 17 last so it becomes JAVA_HOME;
+      # JDK 25 stays available for the plugin-paper toolchain.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: |
+            25
+            17
+
+      - name: Build and test
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
+        run: ./gradlew test :plugin-legacy:shadowJar :plugin-paper:shadowJar --no-daemon -Dorg.gradle.java.installations.fromEnv=JAVA_HOME_25_X64 -Dorg.gradle.java.installations.auto-detect=true
+
+      - name: Upload plugin JARs
+        uses: actions/upload-artifact@v4
+        with:
+          name: blaze-vortex-jars
+          path: |
+            plugin-legacy/build/libs/BlazeVortex-legacy-1.0.0.jar
+            plugin-paper/build/libs/BlazeVortex-paper-1.0.0.jar

@@ -1,0 +1,65 @@
+name: BlazeVortex
+version: ${version}
+main: io.github.blazevortex.BlazeVortexPlugin
+api-version: "1.19"
+description: The Ultimate Minecraft Content, Graphics and Multimedia Engine.
+author: BlazeVortex
+website: https://github.com/blazevortex
+folia-supported: false
+softdepend:
+  - PlaceholderAPI
+  - Vault
+  - WorldGuard
+  - ProtocolLib
+commands:
+  bvx:
+    description: Blaze Vortex administration
+    usage: /bvx <subcommand>
+    aliases: []
+  blazevortex:
+    description: Blaze Vortex administration
+    usage: /blazevortex <subcommand>
+permissions:
+  blazevortex.admin:
+    description: All Blaze Vortex administrative commands
+    default: op
+    children:
+      blazevortex.reload: true
+      blazevortex.upload: true
+      blazevortex.emoji: true
+      blazevortex.image: true
+      blazevortex.gif: true
+      blazevortex.video: true
+      blazevortex.sound: true
+      blazevortex.screen: true
+      blazevortex.pack: true
+      blazevortex.hologram: true
+      blazevortex.gui: true
+      blazevortex.debug: true
+      blazevortex.use: true
+  blazevortex.reload:
+    default: op
+  blazevortex.upload:
+    default: op
+  blazevortex.emoji:
+    default: op
+  blazevortex.image:
+    default: op
+  blazevortex.gif:
+    default: op
+  blazevortex.video:
+    default: op
+  blazevortex.sound:
+    default: op
+  blazevortex.screen:
+    default: op
+  blazevortex.pack:
+    default: op
+  blazevortex.hologram:
+    default: op
+  blazevortex.gui:
+    default: op
+  blazevortex.debug:
+    default: op
+  blazevortex.use:
+    default: true
