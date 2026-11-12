@@ -35,6 +35,17 @@ ffmpeg.path: ffmpeg
 
 Use an absolute path if `ffmpeg` is not on PATH. `ffprobe` is expected next to it.
 
+## World images and GIFs
+
+`/bvx spawn image <name>` paints the file onto **maps in invisible item frames**. You should see the picture, not a blank floating map item.
+
+1. Put `something.png` in `plugins/BlazeVortex/content/images/`.
+2. `/bvx reload` then `/bvx image list` — the name is `something` (no extension).
+3. Look at a block and run `/bvx spawn image something` (or `something 4 4` for a larger screen).
+4. Displays are saved to `plugins/BlazeVortex/data/displays.json` and come back after a restart.
+
+Chat emojis (`<fire>`) still need a hosted resource pack. World screens do not.
+
 ## Resource pack hosting
 
 Minecraft clients download a ZIP from a URL. BVX generates the ZIP and SHA-1; it does not ship a public file server. Put the export on nginx, Caddy, or a CDN, then set the URL.

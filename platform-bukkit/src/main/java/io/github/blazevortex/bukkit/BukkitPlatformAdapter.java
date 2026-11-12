@@ -28,11 +28,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -199,12 +197,17 @@ public class BukkitPlatformAdapter implements PlatformAdapter {
     @Override
     public BvxDisplay spawnDisplay(DisplayCreateRequest request) {
         try {
-            BufferedImage image = loadImage(request);
-            if (displayEntitiesSupport != null && request.type() != DisplayType.VIDEO) {
-                ItemStack stack = new ItemStack(Material.FILLED_MAP);
-                return displayEntitiesSupport.spawnDisplay(request, stack);
+            // Always paint pixels onto MapViews in item frames. ItemDisplay of an empty
+            // FILLED_MAP only shows the blank map item model, which is what players saw.
+            if (request.type() == DisplayType.GIF) {
+                var sequence = ((GifRegistryImpl) engine.gifs()).frames(request.assetName());
+                java.util.List<BufferedImage> frames = sequence.frames().stream()
+                        .map(io.github.blazevortex.media.gif.GifFrame::image)
+                        .toList();
+                int[] delays = sequence.delaysMs().stream().mapToInt(Integer::intValue).toArray();
+                return maps.spawnAnimated(request, frames, delays);
             }
-            return maps.spawnImage(request, image);
+            return maps.spawnImage(request, loadImage(request));
         } catch (Exception ex) {
             throw new io.github.blazevortex.api.BvxException("Failed to spawn display: " + ex.getMessage(), ex);
         }
@@ -384,13 +387,13 @@ public class BukkitPlatformAdapter implements PlatformAdapter {
 
     private BufferedImage loadImage(DisplayCreateRequest request) throws Exception {
         if (engine == null) {
-            return new BufferedImage(128, 128, BufferedImage.TYPE_INT_ARGB);
+            throw new io.github.blazevortex.api.BvxException("Cannot spawn a display before the engine is attached");
         }
-        if (request.type() == DisplayType.GIF) {
-            return ((GifRegistryImpl) engine.gifs()).frames(request.assetName()).frames().get(0).image();
-        }
-        var image = engine.images().find(request.assetName()).orElseThrow();
-        return new ImageProcessor(engine.config().mediaLimits(), 8).read(image.file());
+        Path file = engine.images().find(request.assetName()).map(io.github.blazevortex.api.image.BvxImage::file)
+                .or(() -> engine.emojis().find(request.assetName()).map(io.github.blazevortex.api.emoji.Emoji::file))
+                .orElseThrow(() -> new io.github.blazevortex.api.BvxException(
+                        "Unknown image '" + request.assetName() + "'. Put a PNG/JPG/WEBP in plugins/BlazeVortex/content/images/ (or content/emojis/) then /bvx reload."));
+        return new ImageProcessor(engine.config().mediaLimits(), 8).read(file);
     }
 
     private BufferedImage currentVideoFrame(VideoScreen screen) {

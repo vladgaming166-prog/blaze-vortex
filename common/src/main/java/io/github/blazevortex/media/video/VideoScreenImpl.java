@@ -85,6 +85,7 @@ public final class VideoScreenImpl implements VideoScreen {
         return request.z();
     }
 
+    @Override
     public float yaw() {
         return request.yaw();
     }

@@ -14,6 +14,7 @@ import io.github.blazevortex.core.BlazeVortexEngine;
 import io.github.blazevortex.platform.PlayerLookTarget;
 import io.github.blazevortex.platform.PlayerLocation;
 import io.github.blazevortex.security.PathSafety;
+import io.github.blazevortex.util.Names;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -285,23 +286,27 @@ public final class BvxCommandRouter {
         PlayerLookTarget target = engine.platform().lookTarget(sender.uuid())
                 .orElseThrow(() -> new BvxException("Look at a block to spawn a display"));
         String type = args[0].toLowerCase(Locale.ROOT);
-        String name = args[1];
+        String name = Names.fromUserInput(args[1]);
         int width = args.length >= 3 ? Integer.parseInt(args[2]) : 2;
         int height = args.length >= 4 ? Integer.parseInt(args[3]) : 2;
         return switch (type) {
             case "image" -> require(sender, Permissions.IMAGE, () -> {
-                engine.images().find(name).orElseThrow(() -> new BvxException("Unknown image: " + name));
+                if (engine.images().find(name).isEmpty() && engine.emojis().find(name).isEmpty()) {
+                    throw new BvxException("Unknown image '" + name + "'. Put a PNG/JPG/WEBP in plugins/BlazeVortex/content/images/ then /bvx reload. Use the file name without extension.");
+                }
                 var display = engine.displays().create(DisplayCreateRequest.builder(
                         DisplayType.IMAGE, name, target.worldId(), target.worldName(), target.x(), target.y() + 1, target.z()
                 ).yaw(target.yaw()).width(width).height(height).build());
-                return CommandResult.ok("Spawned image display " + display.id());
+                return CommandResult.ok("Spawned image " + display.id() + " as a " + width + "x" + height
+                        + " map screen. You should see the picture on invisible item frames, not a blank floating map.");
             });
             case "gif" -> require(sender, Permissions.GIF, () -> {
-                engine.gifs().find(name).orElseThrow(() -> new BvxException("Unknown GIF: " + name));
+                engine.gifs().find(name).orElseThrow(() -> new BvxException(
+                        "Unknown GIF '" + name + "'. Put a .gif in plugins/BlazeVortex/content/gifs/ then /bvx reload."));
                 var display = engine.displays().create(DisplayCreateRequest.builder(
                         DisplayType.GIF, name, target.worldId(), target.worldName(), target.x(), target.y() + 1, target.z()
                 ).yaw(target.yaw()).width(width).height(height).build());
-                return CommandResult.ok("Spawned GIF display " + display.id());
+                return CommandResult.ok("Spawned GIF " + display.id() + " as a " + width + "x" + height + " map screen.");
             });
             case "video" -> require(sender, Permissions.VIDEO, () -> {
                 engine.videos().findAsset(name).orElseThrow(() -> new BvxException("Unknown video: " + name));
@@ -469,6 +474,7 @@ public final class BvxCommandRouter {
                 + "\nVideos: " + engine.videos().assets().size()
                 + "\nSounds: " + engine.sounds().assets().size()
                 + "\nScreens: " + engine.videos().screens().size()
+                + "\nDisplays: " + engine.displays().all().size()
                 + "\nFFmpeg: " + engine.ffmpeg().available()
                 + "\nPack: " + engine.resourcePacks().status();
     }

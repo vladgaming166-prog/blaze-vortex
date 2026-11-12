@@ -1,5 +1,13 @@
 # Troubleshooting
 
+**Spawned image is a blank floating map**  
+Older builds spawned an ItemDisplay holding an empty filled map and never painted pixels. Current builds use map item frames. Replace the JAR, look at a block, and run `/bvx spawn image <name>` again.
+
+If it is still blank: `/bvx image list` must show the name; PNG/JPG/WEBP belong in `content/images/`; GIFs belong in `content/gifs/` with `/bvx spawn gif`. Face a solid block.
+
+**Image disappears after a restart**  
+Displays are stored in `plugins/BlazeVortex/data/displays.json` and restored about one second after the plugin enables. If that file is missing, spawn the image again on the new JAR.
+
 **Plugin will not load on 1.19**  
 Use the **legacy** JAR. The Paper 26 JAR has `api-version: 26.1` and Java 25 bytecode.
 

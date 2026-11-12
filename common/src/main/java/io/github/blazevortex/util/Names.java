@@ -14,10 +14,21 @@ public final class Names {
     }
 
     public static String assetName(Path file) {
-        String filename = file.getFileName().toString();
-        int dot = filename.lastIndexOf('.');
-        String raw = dot > 0 ? filename.substring(0, dot) : filename;
-        return requireSafe(raw.toLowerCase(Locale.ROOT));
+        return fromUserInput(file.getFileName().toString());
+    }
+
+    /**
+     * Accepts {@code fire}, {@code fire.png}, or {@code emojis/fire.png} and returns {@code fire}.
+     */
+    public static String fromUserInput(String raw) {
+        String trimmed = raw.trim();
+        int sep = Math.max(trimmed.lastIndexOf('/'), trimmed.lastIndexOf('\\'));
+        if (sep >= 0) {
+            trimmed = trimmed.substring(sep + 1);
+        }
+        int dot = trimmed.lastIndexOf('.');
+        String base = dot > 0 ? trimmed.substring(0, dot) : trimmed;
+        return requireSafe(base.toLowerCase(Locale.ROOT));
     }
 
     public static String requireSafe(String name) {

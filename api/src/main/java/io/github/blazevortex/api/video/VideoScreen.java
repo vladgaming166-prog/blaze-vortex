@@ -28,6 +28,8 @@ public interface VideoScreen {
 
     double z();
 
+    float yaw();
+
     void play();
 
     void pause();

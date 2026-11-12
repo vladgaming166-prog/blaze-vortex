@@ -151,6 +151,15 @@ public final class BlazeVortexEngine implements BlazeVortex {
 
         modules.enableAll(config::moduleEnabled);
         platform.applyChatFormatting(this);
+        if (config.moduleEnabled("display")) {
+            platform.scheduler().runSyncLater(() -> {
+                try {
+                    displays.restore();
+                } catch (Exception ex) {
+                    logger.log(Level.WARNING, "Failed to restore world displays: " + ex.getMessage(), ex);
+                }
+            }, 20);
+        }
 
         if (config.watchFiles()) {
             watcher = new ContentWatcher(layout.content(), logger, platform.scheduler(), path -> {
