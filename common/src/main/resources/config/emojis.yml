@@ -1,0 +1,5 @@
+# Each emoji has its own size from 1 to 100.
+# size is a percentage of the image's normalized native rendering size.
+# Original pixel dimensions and aspect ratio are preserved.
+
+emojis: {}

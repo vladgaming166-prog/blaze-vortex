@@ -1,0 +1,6 @@
+effects: {}
+  # spark:
+  #   particle: FLAME
+  #   duration-ticks: 40
+  #   intensity: 1.0
+  #   max-particles: 24

@@ -1,0 +1,35 @@
+[versions]
+gson = "2.11.0"
+snakeyaml = "2.3"
+adventure = "4.17.0"
+adventure-platform = "4.3.4"
+twelvemonkeys = "3.12.0"
+junit = "5.11.3"
+assertj = "3.26.3"
+paper-legacy = "1.20.4-R0.1-SNAPSHOT"
+paper-modern = "26.3.build.248-stable"
+placeholderapi = "2.11.6"
+vault = "1.7.1"
+shadow = "9.2.2"
+
+[libraries]
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure" }
+adventure-minimessage = { module = "net.kyori:adventure-text-minimessage", version.ref = "adventure" }
+adventure-plain = { module = "net.kyori:adventure-text-serializer-plain", version.ref = "adventure" }
+adventure-gson = { module = "net.kyori:adventure-text-serializer-gson", version.ref = "adventure" }
+adventure-legacy = { module = "net.kyori:adventure-text-serializer-legacy", version.ref = "adventure" }
+adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-platform" }
+imageio-core = { module = "com.twelvemonkeys.imageio:imageio-core", version.ref = "twelvemonkeys" }
+imageio-webp = { module = "com.twelvemonkeys.imageio:imageio-webp", version.ref = "twelvemonkeys" }
+imageio-jpeg = { module = "com.twelvemonkeys.imageio:imageio-jpeg", version.ref = "twelvemonkeys" }
+paper-legacy = { module = "io.papermc.paper:paper-api", version.ref = "paper-legacy" }
+paper-modern = { module = "io.papermc.paper:paper-api", version.ref = "paper-modern" }
+placeholderapi = { module = "me.clip:placeholderapi", version.ref = "placeholderapi" }
+vault = { module = "com.github.MilkBowl:VaultAPI", version.ref = "vault" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

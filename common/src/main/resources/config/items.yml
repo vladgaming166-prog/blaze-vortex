@@ -1,0 +1,8 @@
+items: {}
+  # ruby_sword:
+  #   material: DIAMOND_SWORD
+  #   model: "models/ruby_sword"
+  #   display-name: "<fire> Ruby Sword"
+  #   lore:
+  #     - "<heart> Forged in the vortex"
+  #   custom-model-data: 1001

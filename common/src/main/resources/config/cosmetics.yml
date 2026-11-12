@@ -1,0 +1,5 @@
+cosmetics: {}
+  # ember_wings:
+  #   type: WINGS
+  #   display-name: "<fire> Ember Wings"
+  #   permission: blazevortex.cosmetic.ember_wings

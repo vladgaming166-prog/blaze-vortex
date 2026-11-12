@@ -1,0 +1,16 @@
+# Documented permission nodes. Actual checks use Bukkit/Paper permissions.
+permissions:
+  blazevortex.admin: "All Blaze Vortex administrative commands"
+  blazevortex.reload: "Reload configuration"
+  blazevortex.upload: "Upload content"
+  blazevortex.emoji: "Manage emojis"
+  blazevortex.image: "Manage images"
+  blazevortex.gif: "Manage GIFs"
+  blazevortex.video: "Manage videos"
+  blazevortex.sound: "Manage sounds"
+  blazevortex.screen: "Manage screens"
+  blazevortex.pack: "Build resource packs"
+  blazevortex.hologram: "Manage holograms"
+  blazevortex.gui: "Open editor GUI"
+  blazevortex.debug: "View debug output"
+  blazevortex.use: "Use emojis in chat"
