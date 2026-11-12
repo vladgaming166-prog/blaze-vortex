@@ -46,6 +46,15 @@ Minecraft Java **cannot** play arbitrary MP4, MOV, GIF or MP3 files natively. BV
 - MP4/MOV → FFmpeg frame extraction + map screens + optional OGG audio
 - MP3/WAV → OGG Vorbis in the generated resource pack
 
+## Download
+
+Prebuilt JARs are in [`dist/`](dist/):
+
+- [BlazeVortex-legacy-1.0.0.jar](https://github.com/vladgaming166-prog/blaze-vortex/raw/cursor/blaze-vortex-plugin-9f1a/dist/BlazeVortex-legacy-1.0.0.jar) — Bukkit / Spigot / Paper 1.19–1.21.11 (Java 17)
+- [BlazeVortex-paper-1.0.0.jar](https://github.com/vladgaming166-prog/blaze-vortex/raw/cursor/blaze-vortex-plugin-9f1a/dist/BlazeVortex-paper-1.0.0.jar) — Paper 26.1–26.3 (Java 25)
+
+CI also uploads the same files as the `blaze-vortex-jars` artifact on each [Actions run](https://github.com/vladgaming166-prog/blaze-vortex/actions).
+
 ## Quick start
 
 1. Install Java 17+ (legacy JAR) or Java 25 (Paper 26 JAR).

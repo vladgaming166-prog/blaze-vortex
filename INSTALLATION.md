@@ -7,6 +7,13 @@
 
 Paper 26.3 is documented by Paper as requiring Java 25. The Paper artifact is compiled with `--release 25`.
 
+## Download
+
+- [BlazeVortex-legacy-1.0.0.jar](https://github.com/vladgaming166-prog/blaze-vortex/raw/cursor/blaze-vortex-plugin-9f1a/dist/BlazeVortex-legacy-1.0.0.jar)
+- [BlazeVortex-paper-1.0.0.jar](https://github.com/vladgaming166-prog/blaze-vortex/raw/cursor/blaze-vortex-plugin-9f1a/dist/BlazeVortex-paper-1.0.0.jar)
+
+Or open [`dist/`](https://github.com/vladgaming166-prog/blaze-vortex/tree/cursor/blaze-vortex-plugin-9f1a/dist) and click **Download**.
+
 ## Server steps
 
 1. Stop the server.
